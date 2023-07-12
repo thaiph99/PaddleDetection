@@ -20,6 +20,8 @@ import os
 import argparse
 from convert import load_dota_infos, data_to_coco
 from slicebase import SliceBase
+from ppdet.utils.logger import setup_logger
+logger = setup_logger('train')
 
 wordname_15 = [
     'plane', 'baseball-diamond', 'bridge', 'ground-track-field',
@@ -32,10 +34,13 @@ wordname_16 = wordname_15 + ['container-crane']
 
 wordname_18 = wordname_16 + ['airport', 'helipad']
 
+wordname_4 = ['rigid_plastic', 'cardboard', 'metal', 'soft_plastic']
+
 DATA_CLASSES = {
     'dota10': wordname_15,
     'dota15': wordname_16,
-    'dota20': wordname_18
+    'dota20': wordname_18,
+    'coco_custom': wordname_4
 }
 
 
@@ -96,7 +101,7 @@ def parse_args():
 
 
 def load_dataset(input_dir, nproc, data_type):
-    if 'dota' in data_type.lower():
+    if 'dota' in data_type.lower() or data_type.lower() == 'coco_custom':
         infos = load_dota_infos(input_dir, nproc)
     else:
         raise ValueError('only dota dataset is supported now')
