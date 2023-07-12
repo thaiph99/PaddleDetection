@@ -1,0 +1,23 @@
+metric: RBOX
+num_classes: 4
+
+TrainDataset:
+  name: COCODataSet
+  image_dir: trainval1024/images
+  anno_path: trainval1024/coco_custom_trainval1024.json
+  dataset_dir: ../data/coco_custom
+  data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd', 'gt_poly']
+
+EvalDataset:
+  name: COCODataSet
+  image_dir: trainval1024/images
+  anno_path: trainval1024/coco_custom_trainval1024.json
+  dataset_dir: ../data/coco_custom
+  allow_empty: true
+  data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd', 'gt_poly']
+
+TestDataset:
+  name: ImageFolder
+  # image_dir: test/data
+  anno_path: test1024/DOTA_test1024.json # also support txt (like VOC's label_list.txt)
+  dataset_dir: ../data/coco_custom # if set, anno_path will be 'dataset_dir/anno_path'

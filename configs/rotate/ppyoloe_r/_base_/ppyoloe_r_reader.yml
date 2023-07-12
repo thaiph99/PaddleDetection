@@ -17,7 +17,7 @@ TrainReader:
     - Permute: {}
     - PadRGT: {}
     - PadBatch: {pad_to_stride: 32}
-  batch_size: 2
+  batch_size: 3
   shuffle: true
   drop_last: true
   use_shared_memory: true
@@ -32,7 +32,7 @@ EvalReader:
     - Permute: {}
   batch_transforms:
     - PadBatch: {pad_to_stride: 32}
-  batch_size: 2
+  batch_size: 3
   collate_batch: false
 
 TestReader:
@@ -43,4 +43,4 @@ TestReader:
     - Permute: {}
   batch_transforms:
     - PadBatch: {pad_to_stride: 32}
-  batch_size: 2
+  batch_size: 3
