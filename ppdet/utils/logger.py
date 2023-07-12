@@ -61,7 +61,8 @@ def setup_logger(name="ppdet", output=None):
             filename = os.path.join(output, "log.txt")
         if local_rank > 0:
             filename = filename + ".rank{}".format(local_rank)
-        os.makedirs(os.path.dirname(filename))
+        if not os.path.exists(os.path.dirname(filename)):
+            os.makedirs(os.path.dirname(filename))
         fh = logging.FileHandler(filename, mode='a')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(logging.Formatter())

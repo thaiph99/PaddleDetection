@@ -39,7 +39,7 @@ from ppdet.slim import build_slim_model
 from ppdet.utils.cli import ArgsParser, merge_args
 import ppdet.utils.check as check
 from ppdet.utils.logger import setup_logger
-logger = setup_logger('train')
+logger = setup_logger('train', 'output/thailog.log')
 
 
 def parse_args():
@@ -202,6 +202,10 @@ def main():
     check.check_mlu(cfg.use_mlu)
     check.check_version()
 
+    logger.info("Show all config ====================")
+    for k, v in cfg.items():
+        if v:
+            logger.info("{}: {}".format(k, str(v)))
     run(FLAGS, cfg)
 
 

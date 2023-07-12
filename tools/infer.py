@@ -37,7 +37,7 @@ from ppdet.utils.cli import ArgsParser, merge_args
 from ppdet.slim import build_slim_model
 
 from ppdet.utils.logger import setup_logger
-logger = setup_logger('train')
+logger = setup_logger('train', 'output/thailog.log')
 
 
 def parse_args():
@@ -131,9 +131,9 @@ def get_test_images(infer_dir, infer_img):
     assert infer_img is not None or infer_dir is not None, \
         "--infer_img or --infer_dir should be set"
     assert infer_img is None or os.path.isfile(infer_img), \
-            "{} is not a file".format(infer_img)
+        "{} is not a file".format(infer_img)
     assert infer_dir is None or os.path.isdir(infer_dir), \
-            "{} is not a directory".format(infer_dir)
+        "{} is not a directory".format(infer_dir)
 
     # infer_img has a higher priority
     if infer_img and os.path.isfile(infer_img):
@@ -190,6 +190,11 @@ def run(FLAGS, cfg):
 
 def main():
     FLAGS = parse_args()
+    logger.info("checking by Pham Hong Thai")
+    logger.info("checking flags ========================================")
+    logger.info(FLAGS)
+    logger.info("checking flags config =================================")
+    logger.info(FLAGS.config)
     cfg = load_config(FLAGS.config)
     merge_args(cfg, FLAGS)
     merge_config(FLAGS.opt)
