@@ -425,6 +425,12 @@ class RBoxMetric(Metric):
             self.detection_map.update(bbox, score, label, gt_box, gt_label)
 
     def save_results(self, results, output_dir, imid2path):
+        output = os.path.join(output_dir, "bbox.json")
+        with open(output, 'w') as f:
+            json.dump(results, f)
+        logger.info('The bbox result is saved to {}.'.format(output))
+        return
+
         if imid2path:
             data_dicts = defaultdict(list)
             for result in results:
