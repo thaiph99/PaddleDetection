@@ -191,10 +191,6 @@ def run(FLAGS, cfg):
 def main():
     FLAGS = parse_args()
     logger.info("checking by Pham Hong Thai")
-    logger.info("checking flags ========================================")
-    logger.info(FLAGS)
-    logger.info("checking flags config =================================")
-    logger.info(FLAGS.config)
     cfg = load_config(FLAGS.config)
     merge_args(cfg, FLAGS)
     merge_config(FLAGS.opt)
@@ -234,6 +230,10 @@ def main():
     check_xpu(cfg.use_xpu)
     check_mlu(cfg.use_mlu)
     check_version()
+    logger.info("Show all config ====================")
+    for k, v in cfg.items():
+        if v:
+            logger.info("{}: {}".format(k, str(v)))
 
     run(FLAGS, cfg)
 

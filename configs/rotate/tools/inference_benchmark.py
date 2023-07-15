@@ -370,8 +370,9 @@ def measure_speed(FLAGS):
 
 if __name__ == '__main__':
     FLAGS = parse_args()
+    print("Checking FLAG: ", FLAGS)
     if 'trt' in FLAGS.run_mode:
-        check_version('develop')
+        check_version('2.4.1.0')
         check_trt_version('8.2')
     else:
         check_version('2.4')
