@@ -1,4 +1,34 @@
 
+# Installation
+
+Follow by this tutorials:
+
+- [Quick tutorial for using paddleDetection rotated detections](https://aistudio.baidu.com/projectdetail/5058293)
+- [Install paddleDetection](https://github.com/PaddlePaddle/PaddleDetection/blob/develop/docs/tutorials/INSTALL.md)
+- [Install paddlepadle](https://www.paddlepaddle.org.cn/en)
+
+Summary bash:
+
+```bash
+conda create -n paddle_env python=3.9 -y
+conda activate paddle_env 
+
+# install paddle paddle
+conda install paddlepaddle-gpu==2.5.1 cudatoolkit=11.7 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+
+# install paddle detection
+pip install -r requirements.txt
+cd ppdet/ext_op && python setup.py install
+python ppdet/ext_op/unittest/test_matched_rbox_iou.py
+```
+
+Maybe can install libssl [link](https://stackoverflow.com/questions/72133316/libssl-so-1-1-cannot-open-shared-object-file-no-such-file-or-directory)
+
+```bash
+wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+```
+
 # Slice image
 
 ```bash
@@ -76,9 +106,7 @@ CUDA_VISIBLE_DEVICES=0 python configs/rotate/tools/inference_benchmark.py --mode
 
 ## install tensorRT
 
-Add CUDA repository as described in the documentation:
-
-https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+Add CUDA repository as described in the documentation: [link](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 
 Update the package index:
 
